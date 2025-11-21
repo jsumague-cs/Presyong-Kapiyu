@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import database.DBConnection;
+
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -14,6 +17,12 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 
 public class LogIn_Frame extends JFrame {
 
@@ -80,12 +89,45 @@ public class LogIn_Frame extends JFrame {
 		
 		JButton btnNewButton = new JButton("Log In");
 		btnNewButton.setBounds(205, 183, 117, 29);
+		
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main_Frame MF = new Main_Frame();
-				MF.setVisible(true);
-			}
-		});
+				
+				        String user = txtUser.getText().trim();
+				        String pass = String.valueOf(passwordField.getPassword()).trim();
+
+				        // Empty field check
+				        if (user.isEmpty() || pass.isEmpty()) {
+				            JOptionPane.showMessageDialog(null,
+				                "Please enter both username and password.",
+				                "Missing Input",
+				                JOptionPane.WARNING_MESSAGE
+				            );
+				            return;
+				        }
+
+				        // Call function from Queries.java
+				        boolean isLoggedIn = Queries.loginUser(user, pass);
+
+				        if (isLoggedIn) {
+				            JOptionPane.showMessageDialog(null, "Login successful!");
+
+				            // Go to Main Frame  
+				            new Main_Frame().setVisible(true);
+				            dispose();
+
+				        } else {
+				            JOptionPane.showMessageDialog(null,
+				                "Invalid username or password.",
+				                "Login Failed",
+				                JOptionPane.ERROR_MESSAGE
+				            );
+				        }
+				    }
+				});
+
+
 		btnNewButton.setFont(new Font("Arial", btnNewButton.getFont().getStyle(), btnNewButton.getFont().getSize()));
 		contentPane.add(btnNewButton);
 		
@@ -95,6 +137,24 @@ public class LogIn_Frame extends JFrame {
 		lblFindTheBest.setForeground(new Color(0, 0, 0));
 		lblFindTheBest.setFont(new Font("Chalkboard SE", lblFindTheBest.getFont().getStyle() | Font.ITALIC, 13));
 		contentPane.add(lblFindTheBest);
+		
+		JLabel lblNewLabel_1 = new JLabel("Don't have an account yet?");
+		lblNewLabel_1.setFont(new Font("Arial", lblNewLabel_1.getFont().getStyle(), 11));
+		lblNewLabel_1.setBounds(97, 216, 141, 16);
+		contentPane.add(lblNewLabel_1);
+		
+		JButton btnNewButton_1 = new JButton("Sign Up");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SignUp signup = new SignUp();
+				signup.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton_1.setForeground(new Color(51, 51, 255));
+		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 11));
+		btnNewButton_1.setBounds(250, 217, 72, 16);
+		contentPane.add(btnNewButton_1);
 
 	}
 }
