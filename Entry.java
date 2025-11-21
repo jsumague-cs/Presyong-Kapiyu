@@ -56,6 +56,7 @@ public class Entry {
 			public void actionPerformed(ActionEvent e) {
 				LogIn_Frame login = new LogIn_Frame();
 				login.setVisible(true);
+			
 			}
 		});
 		studentBttn.setBackground(new Color(51, 153, 153));
@@ -64,6 +65,14 @@ public class Entry {
 		frame.getContentPane().add(studentBttn);
 		
 		JButton btnIAmA = new JButton("I am a bussiness owner");
+		btnIAmA.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				BusinessLogIn bLogIn = new BusinessLogIn();
+				bLogIn.setVisible(true);
+
+			}
+		});
 		btnIAmA.setBackground(new Color(51, 153, 153));
 		btnIAmA.setBounds(77, 183, 287, 54);
 		frame.getContentPane().add(btnIAmA);
