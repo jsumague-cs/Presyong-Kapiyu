@@ -10,10 +10,12 @@ import database.DBConnection;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.Color;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -22,7 +24,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-
 
 public class LogIn_Frame extends JFrame {
 
@@ -57,7 +58,9 @@ public class LogIn_Frame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+	 
 		
+	// START NG CONTENTS NG JFRAME
 		txtUser = new JTextField();
 		txtUser.setBounds(158, 105, 212, 31);
 		txtUser.setToolTipText("");
@@ -90,7 +93,7 @@ public class LogIn_Frame extends JFrame {
 		JButton btnNewButton = new JButton("Log In");
 		btnNewButton.setBounds(205, 183, 117, 29);
 		
-		
+	// LOGIN BUTTON
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -143,6 +146,8 @@ public class LogIn_Frame extends JFrame {
 		lblNewLabel_1.setBounds(97, 216, 141, 16);
 		contentPane.add(lblNewLabel_1);
 		
+		
+	// SIGNUP BUTTON
 		JButton btnNewButton_1 = new JButton("Sign Up");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -155,6 +160,18 @@ public class LogIn_Frame extends JFrame {
 		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 11));
 		btnNewButton_1.setBounds(250, 217, 72, 16);
 		contentPane.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("≡");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Entry enter = new Entry();
+				enter.setVisible(true);
+				LogIn_Frame.this.dispose();
+			}
+		});
+		btnNewButton_2.setFont(new Font("Arial", Font.PLAIN, 24));
+		btnNewButton_2.setBounds(6, 6, 46, 31);
+		contentPane.add(btnNewButton_2);
 
 	}
-}
+	}
