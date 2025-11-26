@@ -11,6 +11,10 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import business.CreateBusiness;
+import business.LoginBusiness;
+import business.LoginBusiness;
+
 public class Entry {
 
     private JFrame frame;
@@ -44,7 +48,15 @@ public class Entry {
         frame.setBounds(100, 100, 450, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
+    }
+        
+      // PARA MATAWAG
 
+        public void setVisible(boolean b) {
+            if (frame != null) {
+                frame.setVisible(b);
+            }
+       
         // Student Button
         JButton studentBttn = new JButton("I am a student");
         studentBttn.addActionListener(e -> {
@@ -65,12 +77,10 @@ public class Entry {
         JButton btnBusiness = new JButton("I am a business owner");
         btnBusiness.addActionListener(e -> {
         	
+        	LoginBusiness LogBusiness = new LoginBusiness();
+        	LogBusiness.setVisible(true);          
+            frame.dispose();
         	
-            BusinessLogIn bLogIn = new BusinessLogIn();
-            bLogIn.setVisible(true);
-            frame.dispose(); 
-            
-            
         });
         btnBusiness.setBackground(new Color(51, 153, 153));
         btnBusiness.setFont(new Font("Arial", Font.PLAIN, 14));
